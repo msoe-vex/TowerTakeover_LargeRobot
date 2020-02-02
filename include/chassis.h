@@ -8,7 +8,7 @@ public:
 
   chassis(int leftDriveMotorPort, int rightDriveMotorPort);
 
-  int setSpeed(int leftDriveSpeed, int rightDriveSpeed);
+  void setSpeed(int leftDriveSpeed, int rightDriveSpeed);
 
   ~chassis();
 };

@@ -1,20 +1,10 @@
 #include "main.h"
 
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
+chassis chassis(2, 1);
+
+lift lift(9, 8);
+
+intake intake(20, 19, 7);
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -24,8 +14,6 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-
-	chassis chassis(0, 1);
 }
 
 /**
@@ -80,9 +68,24 @@ void opcontrol() {
 	while (true) {
 		int left = master.get_analog(ANALOG_LEFT_Y);
 		int right = master.get_analog(ANALOG_RIGHT_Y);
+		chassis.setSpeed(left, right);
 
-		left_mtr.
-		right_mtr = right;
+		if (master.get_digital(DIGITAL_R1) == 1) {
+			lift.setSpeed(127);
+		} else if (master.get_digital(DIGITAL_R2) == 1) {
+			lift.setSpeed(-127);
+		} else {
+			lift.setSpeed(0);
+		}
+
+		if (master.get_digital(DIGITAL_L1) == 1) {
+			intake.setSpeed(127, 127);
+		} else if (master.get_digital(DIGITAL_L2) == 1) {
+			intake.setSpeed(-127, -127);
+		} else {
+			intake.setSpeed(0, 0);
+		}
+
 		pros::delay(20);
 	}
 }

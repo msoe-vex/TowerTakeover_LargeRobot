@@ -1,13 +1,13 @@
 #include "chassis.h"
 
 chassis::chassis(int leftDriveMotorPort, int rightDriveMotorPort) {
-  leftDriveMotor = new pros::Motor(leftDriveMotorPort);
-  rightDriveMotor = new pros::Motor(rightDriveMotorPort);
+  leftDriveMotor = new pros::Motor(leftDriveMotorPort, false);
+  rightDriveMotor = new pros::Motor(rightDriveMotorPort, true);
 }
 
-int chassis::setSpeed(int leftDriveSpeed, int rightDriveSpeed) {
-  leftDriveMotor -> equals(leftDriveSpeed);
-  rightDriveMotor -> equals(rightDriveMotor);
+void chassis::setSpeed(int leftDriveSpeed, int rightDriveSpeed) {
+  leftDriveMotor->move(leftDriveSpeed);
+  rightDriveMotor->move(rightDriveSpeed);
 }
 
 chassis::~chassis() { // Deconstructor
