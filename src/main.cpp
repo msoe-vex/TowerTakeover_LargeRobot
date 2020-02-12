@@ -4,7 +4,7 @@ chassis chassis(2, 1);
 
 lift lift(9, 8);
 
-intake intake(20, 19, 7);
+intake intake(6, 5, 7);
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -75,7 +75,7 @@ void opcontrol() {
 		} else if (master.get_digital(DIGITAL_R2) == 1) {
 			lift.setSpeed(-127);
 		} else {
-			lift.setSpeed(0);
+			lift.setSpeed(5);
 		}
 
 		if (master.get_digital(DIGITAL_L1) == 1) {
@@ -84,6 +84,14 @@ void opcontrol() {
 			intake.setSpeed(-127, -127);
 		} else {
 			intake.setSpeed(0, 0);
+		}
+
+		if (master.get_digital(DIGITAL_X) == 1) {
+			intake.pivot(127);
+		} else if (master.get_digital(DIGITAL_B) == 1) {
+			intake.pivot(-127);
+		} else {
+			intake.pivot(0);
 		}
 
 		pros::delay(20);

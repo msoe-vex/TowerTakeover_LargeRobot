@@ -16,6 +16,5 @@ public:
 
   ~intake();
 
-private:
   void pivot(int speed);
 };

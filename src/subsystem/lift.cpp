@@ -1,8 +1,8 @@
 #include "lift.h"
 
 lift::lift(int leftLiftMotorPort, int rightLiftMotorPort) {
-  leftLiftMotor = new pros::Motor(leftLiftMotorPort, true);
-  rightLiftMotor = new pros::Motor(rightLiftMotorPort, false);
+  leftLiftMotor = new pros::Motor(leftLiftMotorPort, false);
+  rightLiftMotor = new pros::Motor(rightLiftMotorPort, true);
 }
 
 void lift::setSpeed(int liftSpeed) {
