@@ -1,10 +1,13 @@
 #include "main.h"
 
-chassis chassis(2, 1);
+chassis chassis(19, 2, 20, 1);
 
 lift lift(9, 8);
 
-intake intake(6, 5, 7);
+intake intake(6, 4, 7);
+
+/* BAD PORTS */
+// Port 6 is bad - 2/16/2020
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -70,17 +73,17 @@ void opcontrol() {
 		int right = master.get_analog(ANALOG_RIGHT_Y);
 		chassis.setSpeed(left, right);
 
-		if (master.get_digital(DIGITAL_R1) == 1) {
+		if (master.get_digital(DIGITAL_L1) == 1) {
 			lift.setSpeed(127);
-		} else if (master.get_digital(DIGITAL_R2) == 1) {
+		} else if (master.get_digital(DIGITAL_L2) == 1) {
 			lift.setSpeed(-127);
 		} else {
 			lift.setSpeed(5);
 		}
 
-		if (master.get_digital(DIGITAL_L1) == 1) {
+		if (master.get_digital(DIGITAL_R1) == 1) {
 			intake.setSpeed(127, 127);
-		} else if (master.get_digital(DIGITAL_L2) == 1) {
+		} else if (master.get_digital(DIGITAL_R2) == 1) {
 			intake.setSpeed(-127, -127);
 		} else {
 			intake.setSpeed(0, 0);

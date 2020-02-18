@@ -1,19 +1,28 @@
 #include "chassis.h"
 
-chassis::chassis(int leftDriveMotorPort, int rightDriveMotorPort) {
-  leftDriveMotor = new pros::Motor(leftDriveMotorPort, false);
-  rightDriveMotor = new pros::Motor(rightDriveMotorPort, true);
+chassis::chassis(int leftFrontDriveMotorPort, int leftRearDriveMotorPort,
+                 int rightFrontDriveMotorPort, int rightRearDriveMotorPort) {
+  leftFrontDriveMotor = new pros::Motor(leftFrontDriveMotorPort, false);
+  leftRearDriveMotor = new pros::Motor(leftRearDriveMotorPort, false);
+  rightFrontDriveMotor = new pros::Motor(rightFrontDriveMotorPort, true);
+  rightRearDriveMotor = new pros::Motor(rightRearDriveMotorPort, true);
 }
 
 void chassis::setSpeed(int leftDriveSpeed, int rightDriveSpeed) {
-  leftDriveMotor->move(leftDriveSpeed);
-  rightDriveMotor->move(rightDriveSpeed);
+  leftFrontDriveMotor->move(leftDriveSpeed);
+  leftRearDriveMotor->move(leftDriveSpeed);
+  rightFrontDriveMotor->move(rightDriveSpeed);
+  rightRearDriveMotor->move(rightDriveSpeed);
 }
 
 chassis::~chassis() { // Deconstructor
-  free(leftDriveMotor); // Free memory
-  free(rightDriveMotor); // Free memory
+  free(leftFrontDriveMotor); // Free memory
+  free(leftRearDriveMotor); // Free memory
+  free(rightFrontDriveMotor); // Free memory
+  free(rightRearDriveMotor); // Free memory
 
-  leftDriveMotor = 0; // Clear reference
-  rightDriveMotor = 0; // Clear reference
+  leftFrontDriveMotor = 0; // Clear reference
+  leftRearDriveMotor = 0; // Clear reference
+  rightFrontDriveMotor = 0; // Clear reference
+  rightRearDriveMotor = 0;
 }

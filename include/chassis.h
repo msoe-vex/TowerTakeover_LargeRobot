@@ -4,9 +4,11 @@
 
 class chassis {
 public:
-  pros::Motor *leftDriveMotor, *rightDriveMotor;
+  pros::Motor *leftFrontDriveMotor, *leftRearDriveMotor,
+              *rightFrontDriveMotor, *rightRearDriveMotor;
 
-  chassis(int leftDriveMotorPort, int rightDriveMotorPort);
+  chassis(int leftFrontDriveMotorPort, int leftRearDriveMotorPort,
+          int rightFrontDriveMotorPort, int rightRearDriveMotorPort);
 
   void setSpeed(int leftDriveSpeed, int rightDriveSpeed);
 
