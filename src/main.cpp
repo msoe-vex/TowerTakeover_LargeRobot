@@ -4,10 +4,10 @@ chassis chassis(19, 2, 20, 1);
 
 lift lift(9, 8);
 
-intake intake(6, 4, 7);
+intake intake(6, 5, 7);
 
 /* BAD PORTS */
-// Port 6 is bad - 2/16/2020
+
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
